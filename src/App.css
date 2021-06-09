@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 1.8rem;
+    font-family: sans-serif;
+}
+
+main{
+    width: 100rem;
+    height: 75vh;
+    margin: 0 auto;
+    padding: 4rem;
+}
