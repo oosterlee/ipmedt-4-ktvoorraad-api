@@ -17,9 +17,9 @@ class CreateProductsTable extends Migration
             $table->id("id");
             $table->string("productname");
             $table->string("category");
-            $table->string("description")->nullable();
+            $table->string("description");
             $table->string("sub")->nullable();
-            $table->string("brand")->nullable();
+            $table->string("brand");
             $table->string("model");
             $table->decimal("price", 10, 2);
             $table->boolean("approval");
