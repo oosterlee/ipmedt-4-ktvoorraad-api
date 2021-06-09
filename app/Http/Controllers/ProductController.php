@@ -11,4 +11,10 @@ class ProductController extends Controller
 
         return $product;
     }
+
+    public function destroy($id) {
+        DB::delete('delete from products where id = ?',[$id]);
+        return redirect('/products');
+        
+        }
 }
