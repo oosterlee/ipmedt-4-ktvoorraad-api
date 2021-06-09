@@ -15,6 +15,7 @@ class ProductsTableSeeder extends Seeder
     {
         $aantal_producten = 11;
         $category_array=["Communicatie","Ergonomie","Kabel", "Print", "Print", "Print", "Randapparatuur","Randapparatuur","Randapparatuur","Randapparatuur","werkplek"];
+        $description_array=["Geen","Geen","Geen","Geen","Geen","Geen","Geen","Geen","Geen","Geen","Geen",];
         $name_array=["Headset","Voetensteun","USB","Cartridge","Cartridge","Printer","Beeldscherm","Muis","Muis","Toetsenbord","Bureau"];
         $brand_array=["Poly","Fellowes","X","HP","HP","HP","HP","Logitech","HP","HP","none"];
         $model_array=["B825-m","159719","USB-A to USB-C 2.0 BLACK","953XL ","301XL","Officejet 6950","Elitedisplay 24","MX Master 3","200","450","Onbekend"];
@@ -22,16 +23,19 @@ class ProductsTableSeeder extends Seeder
         $max_orders_array=["1","1","1","10","10","1","1","1","1","1","1"];
         $condition_array=["none","per persoon, goedkeuring nodig van manager","none","per jaar","per year","none","per jaar, geen goedkeuring nodig","none","per jaar","per jaar","none"];
         $approval_array=[true, true, false, false, false, true, false, true, false, false, true];
+        $image_array=["Geen","Geen","Geen","Geen","Geen","Geen","Geen","Geen","Geen","Geen","Geen",];
         for($i = 0; $i < $aantal_producten; $i++){
             DB::table('products')->insert([
                 'category'=> $category_array[$i],
                 'productname'=> $name_array[$i],
+                'description'=> $description_array[$i],
                 'brand'=> $brand_array[$i],
                 'model'=> $model_array[$i],
                 'price'=> $price_array[$i],
                 'maxorders'=> $max_orders_array[$i],
                 'condition'=> $condition_array[$i],
                 'approval'=> $approval_array[$i],
+                'image' => $image_array[$i],
             ]);
 
         }

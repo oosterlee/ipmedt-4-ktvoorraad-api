@@ -25,6 +25,7 @@ class CreateProductsTable extends Migration
             $table->boolean("approval");
             $table->integer("maxorders");
             $table->string("condition");
+            $table->string("image");
         });
     }
 

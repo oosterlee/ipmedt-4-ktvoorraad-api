@@ -11,11 +11,18 @@ class ProductController extends Controller
         $product = \App\Models\products::where('id','=',$id)->first();
 
         return $product;
+        
+    }
+
+    public function getAll(){
+        $products = \App\Models\products::all();
+        return $products;
     }
 
     public function store(Request $request){
         return products::create([
             'category' => $request->input('category'),
+            'description' => $request->input('description'),
             'productname' => $request->input('productname'),
             'brand' => $request->input('brand'),
             'model' => $request->input('model'),
@@ -23,17 +30,8 @@ class ProductController extends Controller
             'maxorders' => $request->input('maxorders'),
             'condition' => $request->input('condition'),
             'approval' => $request->input('approval'),
+            'image' => $request->input('image'),
 
-        ]);
-
-            // $validated = $request->validate([
-            //     'category' => 'required|max:40',
-            //     'productname' => 'required|max:40',
-            // ]);
-
-            // return $validated;
-        
-
-        
+        ]);        
     }
 }
