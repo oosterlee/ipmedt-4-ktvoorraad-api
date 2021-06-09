@@ -53,6 +53,10 @@
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^1.2.35",
+        "react-scripts": "^4.0.3"
     }
 >>>>>>> 1db3200f1d7f081b45b5a0220f42671ee93c1f14
 }
