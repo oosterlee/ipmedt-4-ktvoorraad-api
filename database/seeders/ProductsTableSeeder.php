@@ -29,7 +29,7 @@ class ProductsTableSeeder extends Seeder
                 'brand'=> $brand_array[$i],
                 'model'=> $model_array[$i],
                 'price'=> $price_array[$i],
-                'maximum'=> $maximum_array[$i],
+                'maxorders'=> $maximum_array[$i],
                 'condition'=> $condition_array[$i],
                 'approval'=> $approval_array[$i],
             ]);
