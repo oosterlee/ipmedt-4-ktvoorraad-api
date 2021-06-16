@@ -29,13 +29,8 @@ class AuthController extends Controller
 
         $user = Auth::user();
 
-        $token = $user->createToken('token')->plainTextToken;
+        return ["token" => $user->createToken('token')->plainTextToken]; //Er is een error maar de token wordt wel aangemaakt in postman
 
-        $cookie = cookie('jwt', $token, 44640); // 1 month | 1 maand
-
-        return response([
-            'message' => "Login success"
-        ])->withCookie($cookie);
     }
 
 
