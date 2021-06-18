@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrderedProductsExport;
 use App\Http\Controllers\OrderedProductsController;
+use App\Http\Controllers\OrderHistoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,4 +32,9 @@ Route::middleware('auth:sanctum')->group(function(){ //protected routes
     Route::post('logout', [AuthController::class, 'logout']);
 });
 
+// ADMIN PAGES
+Route::get('/orderhistory/{id}', [OrderHistoryController::class, 'index']);
 Route::get('/export', [OrderedProductsExport::class, 'download']);
+Route::get('/orderrequests', [OrderedProductsController::class, 'getOrderRequests']);
+
+Route::put('/orderrequests/{id}', [OrderedProductsController::class, 'update']);
