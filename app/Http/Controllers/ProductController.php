@@ -13,12 +13,12 @@ class ProductController extends Controller
         return $product;
     }
 
-    public function create(Request $request){
-        if($request->isMethod('post')){
-            $producten = $request->input();
-            echo "<pre>"; print_r($producten); die;
-        }
-    }
+    // public function create(Request $request){
+    //     if($request->isMethod('post')){
+    //         $producten = $request->input();
+    //         echo "<pre>"; print_r($producten); die;
+    //     }
+    // }
 
     public function getAll(){
         $products = \App\Models\products::all();
