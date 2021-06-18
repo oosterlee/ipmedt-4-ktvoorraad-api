@@ -20,7 +20,6 @@ class CreateOrderedProductsTable extends Migration
             $table->string("model");
             $table->decimal("price", 10, 2);
             $table->integer("aantal");
-            $table->string("image");
         });
     }
 
