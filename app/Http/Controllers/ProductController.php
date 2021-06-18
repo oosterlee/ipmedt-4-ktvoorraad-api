@@ -9,9 +9,18 @@ class ProductController extends Controller
 {
     public function show($id){
         $product = \App\Models\products::where('id','=',$id)->first();
-
         return $product;
-        
+    }
+
+    public function create(Request $request){
+        return products::create([
+            $product->productname => $request->input('productname'),
+            $product->besteld_door = Auth::user()->name,
+            $product->brand => $request->input('brand'),
+            $product->mode => $request->input('model'),
+            $product->price => $request->input('price'),
+            $product->aantal => $$request->input('aantal'),
+        ]);
     }
 
     public function getAll(){
@@ -31,7 +40,7 @@ class ProductController extends Controller
             'condition' => $request->input('condition'),
             'approval' => $request->input('approval'),
             'image' => $request->input('image'),
-
-        ]);        
+        ]);  
+           
     }
 }

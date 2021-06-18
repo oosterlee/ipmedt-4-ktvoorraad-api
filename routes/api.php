@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/products/{id}', [\App\Http\Controllers\ProductController::class,'show']);
 Route::get('/products', [\App\Http\Controllers\ProductController::class, 'getAll']);
 Route::post('/products/store', [\App\Http\Controllers\ProductController::class, 'store']);
+
+Route::post('/product/create',[\App\Http\Controllers\ProductController::class, 'create']);
+
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login'])->name('login');
 
@@ -25,3 +28,4 @@ Route::middleware('auth:sanctum')->group(function(){ //protected routes
     Route::get('user', [AuthController::class, 'user']);
     Route::post('logout', [AuthController::class, 'logout']);
 });
+
