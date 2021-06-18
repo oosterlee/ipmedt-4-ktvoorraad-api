@@ -13,16 +13,29 @@ class ProductController extends Controller
         return $product;
     }
 
-    // public function create(Request $request){
-    //     if($request->isMethod('post')){
-    //         $producten = $request->input();
-    //         echo "<pre>"; print_r($producten); die;
-    //     }
-    // }
-
     public function getAll(){
         $products = \App\Models\products::all();
         return $products;
+    }
+
+    public function update(Request $request){
+        $product = products::find($request->id);
+        $product->category = $request->category;
+        $product->description = $request->description;
+        $product->productname = $request->productname;
+        $product->brand = $request->brand;
+        $product->model = $request->model;
+        $product->price = $request->price;
+        $product->maxorders = $request->maxorders;
+        $product->condition = $request->condition;
+        $product->approval = $request->approval;
+        $product->image = $request->image;
+        try {
+            $product->save();
+            return redirect('/');
+        } catch (Exception $e) {
+            return redirect('/product');
+        }
     }
 
     public function store(Request $request){

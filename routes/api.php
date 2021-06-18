@@ -3,7 +3,11 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrderedProductsExport;
 use App\Http\Controllers\OrderedProductsController;
+
 use App\Http\Controllers\OrderHistoryController;
+
+use App\Http\Controllers\ProductController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +27,8 @@ Route::get('/products', [\App\Http\Controllers\ProductController::class, 'getAll
 Route::post('/products/store', [\App\Http\Controllers\ProductController::class, 'store']);
 
 Route::post('/orderproducts/store',[OrderedProductsController::class, 'store']);
+
+Route::put('/management/products', [ProductController::class, 'update']);
 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login'])->name('login');

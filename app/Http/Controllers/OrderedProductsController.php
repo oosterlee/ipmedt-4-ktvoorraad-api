@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ordered_products;
 use Illuminate\Http\Request;
 
 use App\Models\OrderedProducts;
 
 class OrderedProductsController extends Controller {
+
     public function store(Request $request) {
     	$validated = $request->validate([
     		// 'data' => 'required|array',
