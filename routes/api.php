@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrderedProductsExport;
+use App\Http\Controllers\OrderedProductsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,7 @@ Route::get('/products/{id}', [\App\Http\Controllers\ProductController::class,'sh
 Route::get('/products', [\App\Http\Controllers\ProductController::class, 'getAll']);
 Route::post('/products/store', [\App\Http\Controllers\ProductController::class, 'store']);
 
-Route::post('/product/create',[\App\Http\Controllers\ProductController::class, 'create']);
+Route::post('/orderproducts/store',[OrderedProductsController::class, 'store']);
 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login'])->name('login');

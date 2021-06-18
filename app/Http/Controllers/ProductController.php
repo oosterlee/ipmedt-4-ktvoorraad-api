@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\products;
+use App\Models\ordered_products;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -12,16 +13,12 @@ class ProductController extends Controller
         return $product;
     }
 
-    public function create(Request $request){
-        return products::create([
-            $product->productname => $request->input('productname'),
-            $product->besteld_door = Auth::user()->name,
-            $product->brand => $request->input('brand'),
-            $product->mode => $request->input('model'),
-            $product->price => $request->input('price'),
-            $product->aantal => $$request->input('aantal'),
-        ]);
-    }
+    // public function create(Request $request){
+    //     if($request->isMethod('post')){
+    //         $producten = $request->input();
+    //         echo "<pre>"; print_r($producten); die;
+    //     }
+    // }
 
     public function getAll(){
         $products = \App\Models\products::all();
