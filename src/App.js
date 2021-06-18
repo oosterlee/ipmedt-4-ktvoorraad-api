@@ -16,7 +16,7 @@ class App extends React.Component{
   }
 
   makeApiCall= searchTerm => {
-    const BASE_URL = "http://localhost:8002/products/";
+    const BASE_URL = "http://localhost:8000/products/";
     axios.get(BASE_URL + searchTerm).then(res =>{
       console.log(res.data);
       let resultaat = res;
