@@ -14,13 +14,11 @@ class CreateOrderedProductsTable extends Migration
     public function up()
     {
         Schema::create('ordered_products', function (Blueprint $table) {
-            $table->string("productname");
-            $table->string("besteld_door");
-            $table->string("brand");
-            $table->string("model");
-            $table->decimal("price", 10, 2);
-            $table->integer("aantal");
-            $table->string("image");
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
+            $table->integer("amount");
+            $table->timestamps();
         });
     }
 
@@ -31,6 +29,10 @@ class CreateOrderedProductsTable extends Migration
      */
     public function down()
     {
+        Schema::table('ordered_products', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['product_id']);
+        });
         Schema::dropIfExists('ordered_products');
     }
 }

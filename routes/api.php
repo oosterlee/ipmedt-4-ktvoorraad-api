@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrderedProductsExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,4 @@ Route::middleware('auth:sanctum')->group(function(){ //protected routes
     Route::post('logout', [AuthController::class, 'logout']);
 });
 
+Route::get('/export', [OrderedProductsExport::class, 'download']);
