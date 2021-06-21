@@ -6,6 +6,7 @@ use App\Models\ordered_products;
 use Illuminate\Http\Request;
 
 use App\Models\OrderedProducts;
+use DB;
 
 class OrderedProductsController extends Controller {
 
@@ -44,5 +45,10 @@ class OrderedProductsController extends Controller {
     	$op = OrderedProducts::where('id', $id)->firstOrFail();
     	$op->approved = $validated["approved"];
     	return $op->save();
+    }
+
+    public function getEachDay() {
+    	DB::statement("SET SQL_MODE=''");
+    	return OrderedProducts::where("approved", 1)->select(DB::raw('count(*) as count'), DB::raw("DATE_FORMAT(updated_at, '%d-%m-%y') as date"))->groupByRaw('DAY(updated_at)')->get()->toArray();
     }
 }
