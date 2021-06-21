@@ -40,7 +40,9 @@ Route::middleware('auth:sanctum')->group(function(){ //protected routes
 
 // ADMIN PAGES
 Route::get('/orderhistory/{id}', [OrderHistoryController::class, 'index']);
-Route::get('/export', [OrderedProductsExport::class, 'download']);
+// Route::get('/export', [OrderedProductsExport::class, 'download']);
 Route::get('/orderrequests', [OrderedProductsController::class, 'getOrderRequests']);
+Route::get('/export/days', [OrderedProductsController::class, 'getEachDay']);
+Route::get('/export/{date}', [OrderedProductsExport::class, 'download']);
 
 Route::put('/orderrequests/{id}', [OrderedProductsController::class, 'update']);
