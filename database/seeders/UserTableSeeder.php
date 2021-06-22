@@ -15,9 +15,33 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name'=> "test",
+            'name'=> "test admin",
             'email'=> "test@gmail.com",
             'password'=> bcrypt("laravel"),
+            'role' => "Admin",
+            'address' => "Teststraat",
+            'housenumber' => "9A",
+            'postalcode' => "1234AB",
+        ]);
+
+        DB::table('users')->insert([
+            'name'=> "test manager",
+            'email'=> "test2@gmail.com",
+            'password'=> bcrypt("laravel"),
+            'role' => "Manager",
+            'address' => "Teststraat",
+            'housenumber' => "9B",
+            'postalcode' => "1234AB",
+        ]);
+
+        DB::table('users')->insert([
+            'name'=> "test medewerker",
+            'email'=> "test3@gmail.com",
+            'password'=> bcrypt("laravel"),
+            'role' => "Medewerker",
+            'address' => "Teststraat",
+            'housenumber' => "9C",
+            'postalcode' => "1234AB",
         ]);
     }
 }
