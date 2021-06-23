@@ -30,6 +30,8 @@ Route::post('/orderproducts/store',[OrderedProductsController::class, 'store']);
 
 Route::put('/management/products', [ProductController::class, 'update']);
 
+Route::delete('/management/products/{id}', [ProductController::class, 'delete']);
+
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login'])->name('login');
 

@@ -37,10 +37,16 @@ class ProductController extends Controller
         try {
             $product->save();
             $result = $product->save();
-            return redirect('/');
+            return true;
         } catch (Exception $e) {
             return redirect('/product');
         }
+    }
+
+    public function delete(Request $request, $id)
+    {
+        $product = products::where('id', $request->id)->first();
+        return $product->delete();
     }
 
 
