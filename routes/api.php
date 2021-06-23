@@ -26,7 +26,6 @@ Route::get('/products/{id}', [\App\Http\Controllers\ProductController::class,'sh
 Route::get('/products', [\App\Http\Controllers\ProductController::class, 'getAll']);
 Route::post('/products/store', [\App\Http\Controllers\ProductController::class, 'store']);
 
-Route::post('/orderproducts/store',[OrderedProductsController::class, 'store']);
 
 Route::put('/management/products', [ProductController::class, 'update']);
 
@@ -36,6 +35,7 @@ Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::middleware('auth:sanctum')->group(function(){ //protected routes
     Route::get('user', [AuthController::class, 'user']);
     Route::post('logout', [AuthController::class, 'logout']);
+	Route::post('/orderproducts/store',[OrderedProductsController::class, 'store']);
 });
 
 // ADMIN PAGES
