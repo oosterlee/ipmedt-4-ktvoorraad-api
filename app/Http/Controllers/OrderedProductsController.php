@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\OrderedProducts;
 use DB;
+use Auth;
 
 class OrderedProductsController extends Controller {
 
@@ -22,8 +23,8 @@ class OrderedProductsController extends Controller {
     	for ($i = 0; $i < sizeof($validated); $i++) {
     		$op = new OrderedProducts;
 
-    		// $op->user_id = Auth::user()->id;
-    		$op->user_id = 1;
+    		$op->user_id = Auth::user()->id;
+    		// $op->user_id = 1;
 
 	    	$op->product_id = $validated[$i]['product_id'];
 	    	$op->amount = $validated[$i]['amount'];
