@@ -34,7 +34,7 @@ class ProductsTableSeeder extends Seeder
         $max_orders_array=["1","1","1","10","10","1","1","1","1","1","1"];
         $condition_array=["none","per persoon, goedkeuring nodig van manager","none","per jaar","per year","none","per jaar, geen goedkeuring nodig","none","per jaar","per jaar","none"];
         $approval_array=[true, true, false, false, false, true, false, true, false, false, true];
-        $image_array=["/img/headset.jpg","/img/voetensteun.jpg","/img/usb.jpg","/img/cartridge301xl.jpg","/img/cartridge953xl.jpg","/img/printer.jpg","/img/beeldscherm.jpg","/img/muishp.jpg","/img/muislogitech.jpg","/img/toetsenbord.jpg","/img/bureau.jpg",];
+        $image_array=["/img/headset.jpg","/img/voetensteun.jpg","/img/usb.jpg","/img/cartridge301xl.jpg","/img/cartridge953xl.jpg","/img/printer.jpg","/img/beeldscherm.jpg","/img/muislogitech.jpg","/img/muishp.jpg","/img/toetsenbord.jpg","/img/bureau.jpg",];
         for($i = 0; $i < $aantal_producten; $i++){
             DB::table('products')->insert([
                 'category'=> $category_array[$i],

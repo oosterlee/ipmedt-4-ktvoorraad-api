@@ -21,7 +21,9 @@ class ProductController extends Controller
     }
 
     public function update(Request $request){
-        $product = products::find($request->id);
+        var_dump($request->id);
+        $random = Str::random(10);
+        $product = products::where('id', $request->id)->first();
         $product->category = $request->category;
         $product->description = $request->description;
         $product->productname = $request->productname;
@@ -31,14 +33,17 @@ class ProductController extends Controller
         $product->maxorders = $request->maxorders;
         $product->condition = $request->condition;
         $product->approval = $request->approval;
-        $product->image = $request->image->store('img/');
+        // $product->image = $request->file('image')->storeAs('', $random . '.jpg', 'public_uploads');
         try {
             $product->save();
+            $result = $product->save();
             return redirect('/');
         } catch (Exception $e) {
             return redirect('/product');
         }
     }
+
+
 
     public function store(Request $request, \App\Models\products $product){
 
