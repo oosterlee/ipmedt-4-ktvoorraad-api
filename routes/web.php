@@ -24,4 +24,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::any('{any}', function() {
 	return view('react.index');
-})->where('any', '^(?!api).*$');
+// })->where('any', '^(?!api).*$');
+})->where('any', '.*');
