@@ -9,7 +9,7 @@ class OrderedProducts extends Model {
     use HasFactory;
 
     public function product() {
-    	return $this->belongsTo(Products::class);
+    	return $this->belongsTo(products::class);
     }
 
     public function user() {
