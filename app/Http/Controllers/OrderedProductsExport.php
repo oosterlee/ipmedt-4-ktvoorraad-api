@@ -7,9 +7,9 @@ use Excel;
 use Illuminate\Support\Collection;
 
 use App\Models\OrderedProducts;
-use Maatwebsite\Excel\Concerns\FromCollection;
+// use Maatwebsite\Excel\Concerns\FromCollection;
 
-class OrderedProductsExport extends Controller implements FromCollection {
+class OrderedProductsExport extends Controller {
 	protected $date;
 
 	public function __construct($date = "") {

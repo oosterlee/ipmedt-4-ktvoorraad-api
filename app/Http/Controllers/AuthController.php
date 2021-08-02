@@ -51,4 +51,19 @@ class AuthController extends Controller
             'message' => 'Success'
         ])->withCookie($cookie);
     }
+
+    public function update(Request $request){
+        $user = user::where('id', $request->id)->first();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->address= $request->address;
+        $user->housenumber = $request->housenumber;
+        $user->postalcode = $request->postalcode;
+
+        try{
+            $user->save();
+        } catch(Exception $e){
+            return redirect("/profile");
+        }
+    }
 }

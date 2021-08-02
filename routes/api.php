@@ -36,6 +36,7 @@ Route::post('login', [AuthController::class, 'login'])->name('login');
 
 Route::middleware(['auth:sanctum', 'role:Admin'])->group(function(){ //protected routes
     Route::get('user', [AuthController::class, 'user']);
+    Route::put('user/update', [AuthController::class, 'update']);
     Route::post('logout', [AuthController::class, 'logout']);
 	Route::post('/orderproducts/store',[OrderedProductsController::class, 'store']);
 });
