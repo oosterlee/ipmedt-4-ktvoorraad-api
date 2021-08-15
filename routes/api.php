@@ -34,7 +34,7 @@ Route::delete('/management/products/{id}', [ProductController::class, 'delete'])
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login'])->name('login');
 
-Route::middleware(['auth:sanctum', 'role:Admin'])->group(function(){ //protected routes
+Route::middleware('auth:sanctum')->group(function(){ //protected routes
     Route::get('user', [AuthController::class, 'user']);
     Route::put('user/update', [AuthController::class, 'update']);
     Route::post('logout', [AuthController::class, 'logout']);
