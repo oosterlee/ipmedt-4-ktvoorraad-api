@@ -37,6 +37,7 @@ Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::middleware('auth:sanctum')->group(function(){ //protected routes
     Route::get('user', [AuthController::class, 'user']);
     Route::put('user/update', [AuthController::class, 'update']);
+    Route::put('user/password', [AuthController::class, 'reset_password']);
     Route::post('logout', [AuthController::class, 'logout']);
 	Route::post('/orderproducts/store',[OrderedProductsController::class, 'store']);
 });

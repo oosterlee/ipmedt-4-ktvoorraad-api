@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
@@ -59,6 +60,19 @@ class AuthController extends Controller
         $user->address= $request->address;
         $user->housenumber = $request->housenumber;
         $user->postalcode = $request->postalcode;
+
+        try{
+            $user->save();
+        } catch(Exception $e){
+            return redirect("/profile");
+        }
+    }
+
+    public function reset_password(Request $request){
+        $user = user::where('id', $request->id)->first();
+        if (Hash::check($request->password_old, $user->password)) {
+            $user->password = bcrypt($request->password_new);
+        }
 
         try{
             $user->save();
