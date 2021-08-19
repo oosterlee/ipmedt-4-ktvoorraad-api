@@ -7,6 +7,7 @@ use App\Http\Controllers\OrderedProductsController;
 use App\Http\Controllers\OrderHistoryController;
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PackController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,14 @@ Route::middleware('auth:sanctum')->group(function(){ //protected routes
     Route::post('logout', [AuthController::class, 'logout']);
 	Route::post('/orderproducts/store',[OrderedProductsController::class, 'store']);
 });
+
+
+Route::get('/pack', [PackController::class, 'index']);
+Route::get('/pack/{id}', [PackController::class, 'show']);
+
+Route::post('/pack/store', [PackController::class, 'store']);
+Route::put('/pack/{id}/update', [PackController::class, 'update']);
+
 
 // ADMIN PAGES
 Route::get('/orderhistory/{id}', [OrderHistoryController::class, 'index']);
