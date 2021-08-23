@@ -15,9 +15,14 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::middleware("auth:sanctum")->get('/user', function(Request $request){
-    return $request->user();
-});
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::middleware("auth:sanctum")->get('/user', function(Request $request){
+//     return $request->user();
+// });
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::any('{any}', function() {
+	return view('react.index');
+// })->where('any', '^(?!api).*$');
+})->where('any', '.*');

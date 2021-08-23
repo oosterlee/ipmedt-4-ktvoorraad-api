@@ -6,6 +6,7 @@ use App\Models\products;
 use App\Models\ordered_products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class ProductController extends Controller
@@ -72,9 +73,13 @@ class ProductController extends Controller
         $product->image = "/img/" . $path;
         try {
             $product->save();
-            return redirect('/');
+            return response([
+                'message' => 'OK'
+            ], 200);
         } catch (Exception $e) {
-            return redirect('/product');
+            return response([
+                'message' => 'Er is iets foutgegaan. Probeer het later opnieuw.'
+            ], 500);
         }
         
 
