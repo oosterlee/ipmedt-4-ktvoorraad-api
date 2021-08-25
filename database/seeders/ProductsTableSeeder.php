@@ -25,7 +25,7 @@ class ProductsTableSeeder extends Seeder
         $beschrijving_pd9 = "Met de HP Draadloze Muis 200 Zwart is dankzij zijn vorm grootte comfortabel in gebruik en ontlast hierdoor de pols. Doordat de muis draadloos is, zit je niet in de knoop met draden die op je bureau liggen. En dankzij de draadloze connectiviteit van 2,4 Ghz heb je een bereik tot 10 meter en een hoek van 360 graden.";
         $beschrijving_pd10 = "De toetsenbordindeling van dit toetsenbord is QWERTY en de taalindeling is US International.";
         $beschrijving_pd11 = "Plaats gemakkelijk je monitoren en andere werkspullen op het werkblad. Je verbetert de productiviteit als je zittend en staand werken afwisselt. Deze afwisseling is ook goed voor de ergonomie. Hiermee verminder je de kans op lichamelijke klachten.";
-        $category_array=["Communicatie","Ergonomie","Kabel", "Print", "Print", "Print", "Randapparatuur","Randapparatuur","Randapparatuur","Randapparatuur","werkplek"];
+        $category_array=["Communicatie","Ergonomie","Kabels", "Print apparatuur", "Print apparatuur", "Print apparatuur", "Rand apparatuur","Rand apparatuur","Rand apparatuur","Rand apparatuur","Ergonomie"];
         $description_array=[$beschrijving_pd1,$beschrijving_pd2,$beschrijving_pd3,$beschrijving_pd4,$beschrijving_pd5,$beschrijving_pd6,$beschrijving_pd7,$beschrijving_pd8,$beschrijving_pd9,$beschrijving_pd10,$beschrijving_pd11];
         $name_array=["Headset","Voetensteun","USB","Cartridge","Cartridge","Printer","Beeldscherm","Muis","Muis","Toetsenbord","Bureau"];
         $brand_array=["Poly","Fellowes","X","HP","HP","HP","HP","Logitech","HP","HP","Bureau"];
