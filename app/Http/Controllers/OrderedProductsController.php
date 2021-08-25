@@ -6,6 +6,7 @@ use App\Models\ordered_products;
 use Illuminate\Http\Request;
 
 use App\Models\OrderedProducts;
+use App\Models\OrderedPack;
 use DB;
 use Auth;
 
@@ -14,21 +15,32 @@ class OrderedProductsController extends Controller {
     public function store(Request $request) {
     	$validated = $request->validate([
     		// 'data' => 'required|array',
-    		'*.product_id' => 'required|integer',
+    		'*.product_id' => 'required_if:*.uuid,""|integer',
+            '*.uuid' => 'required_if:*.product_id,""|string',
     		'*.amount' => 'required|integer'
     	]);
 
     	$res = [];
 
     	for ($i = 0; $i < sizeof($validated); $i++) {
-    		$op = new OrderedProducts;
+            if (array_key_exists("product_id", $validated[$i])) {
+        		$op = new OrderedProducts;
 
-    		$op->user_id = Auth::user()->id;
-    		// $op->user_id = 1;
+        		$op->user_id = Auth::user()->id;
+        		// $op->user_id = 1;
 
-	    	$op->product_id = $validated[$i]['product_id'];
-	    	$op->amount = $validated[$i]['amount'];
-	    	array_push($res, $op->save());
+    	    	$op->product_id = $validated[$i]['product_id'];
+    	    	$op->amount = $validated[$i]['amount'];
+    	    	array_push($res, $op->save());
+            } else {
+                $op = new OrderedPack;
+
+                $op->user_id = Auth::user()->id;
+
+                $op->pack_id = $validated[$i]['uuid'];
+                $op->amount = $validated[$i]['amount'];
+                array_push($res, $op->save());
+            }
     	}
 
     	return $res;
@@ -40,7 +52,7 @@ class OrderedProductsController extends Controller {
 
     public function update(Request $request, $id) {
     	$validated = $request->validate([
-    		'approved' => 'required'
+    		'approved' => 'required',
     	]);
 
     	$op = OrderedProducts::where('id', $id)->firstOrFail();

@@ -14,7 +14,12 @@ class CreatePackProductTable extends Migration
     public function up() {
         Schema::create('pack_product', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pack_id')->constrained('pack')->onDelete('cascade');
+            // $table->uuid('pack_id');
+            // $table->uuid('product_id');
+            // $table->foreign('pack_id')->references('id')->on('pack')->onDelete('cascade');
+            $table->foreignUuid('pack_id')->references('uuid')->on('pack')->onDelete('cascade');
+            // $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            // $table->foreignId('pack_id')->constrained('pack')->onDelete('cascade');
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->timestamps();
         });

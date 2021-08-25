@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderHistoryController;
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PackController;
+use App\Http\Controllers\OrderedPackController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -47,13 +48,17 @@ Route::get('/pack/{id}', [PackController::class, 'show']);
 
 Route::post('/pack/store', [PackController::class, 'store']);
 Route::put('/pack/{id}/update', [PackController::class, 'update']);
+Route::delete('/pack/{id}', [PackController::class, 'delete']);
 
 
 // ADMIN PAGES
 Route::get('/orderhistory/{id}', [OrderHistoryController::class, 'index']);
+Route::get('/orderpackhistory/{id}', [OrderHistoryController::class, 'packShow']);
 // Route::get('/export', [OrderedProductsExport::class, 'download']);
 Route::get('/orderrequests', [OrderedProductsController::class, 'getOrderRequests']);
+Route::get('/orderpackrequests', [OrderedPackController::class, 'index']);
 Route::get('/export/days', [OrderedProductsController::class, 'getEachDay']);
 Route::get('/export/{date}', [OrderedProductsExport::class, 'download']);
 
 Route::put('/orderrequests/{id}', [OrderedProductsController::class, 'update']);
+Route::put('/orderpackrequests/{id}/update', [OrderedPackController::class, 'update']);
