@@ -7,7 +7,12 @@ use Excel;
 use Illuminate\Support\Collection;
 
 use App\Models\OrderedProducts;
+
+use App\Models\OrderedPack;
+use Maatwebsite\Excel\Concerns\FromCollection;
+
 // use Maatwebsite\Excel\Concerns\FromCollection;
+
 
 class OrderedProductsExport extends Controller {
 	protected $date;
@@ -24,6 +29,7 @@ class OrderedProductsExport extends Controller {
     	// Toevoegen 'Bestelling goedgekeurd op'
 
     	$ops = $this::get(new Request(), $this->date);
+        $opsPacks = $this::getPacks(new Request(), $this->date);
     	// $ops = [];
 
     	foreach($ops as $key => $op) {
@@ -31,6 +37,12 @@ class OrderedProductsExport extends Controller {
     		$opproduct = $op->product;
     		array_push($collectionData, ["", $opuser->name, $opuser->email, $opuser->address, $opuser->housenumber, $opuser->housenumber, $opproduct->productname, $opproduct->brand, $opproduct->model, $opproduct->price, $op->amount, $opproduct->price * $op->amount]);
     	}
+
+        foreach($opsPacks as $key => $op) {
+            $opuser = $op->user;
+            $pack = $op->pack;
+            array_push($collectionData, ["", $opuser->name, $opuser->email, $opuser->address, $opuser->housenumber, $opuser->housenumber, $pack->name, "PAKKET", "PAKKET", "-", $op->amount, "-"]);
+        }
 
     	// $ops->each(function($op) use ($collectionData) {
     		
@@ -52,6 +64,11 @@ class OrderedProductsExport extends Controller {
     public function get(Request $request, $date) {
 		$products = OrderedProducts::where("approved", 1)->get()->groupBy(function ($data) {return \Carbon\Carbon::parse($data->updated_at)->format('d-m-y');})->get($date);
 		return $products == null ? [] : $products;
+    }
+
+    public function getPacks(Request $request, $date) {
+        $packs = OrderedPack::with(['pack'])->where("approved", 1)->get()->groupBy(function ($data) {return \Carbon\Carbon::parse($data->updated_at)->format('d-m-y');})->get($date);
+        return $packs == null ? [] : $packs;
     }
 
     public function download($date) {

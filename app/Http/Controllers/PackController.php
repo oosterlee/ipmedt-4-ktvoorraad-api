@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Pack;
 use App\Models\PackProduct;
 
+use Illuminate\Support\Str;
+
 class PackController extends Controller {
     
     public function index() {
@@ -22,6 +24,9 @@ class PackController extends Controller {
 
         $pack = new Pack();
 
+        $packid = Str::uuid();
+        $pack->uuid = $packid;
+
         $pack->name = $validated["name"];
         $pack->description = $validated["description"];
 
@@ -31,7 +36,7 @@ class PackController extends Controller {
 
         	foreach ($validated["products"] as $key => $value) {
         		$pp = new PackProduct();
-        		$pp->pack_id = $pack->id;
+        		$pp->pack_id = $pack->uuid;
         		$pp->product_id = $value;
         		$pp->save();
         	}
@@ -50,29 +55,31 @@ class PackController extends Controller {
             'products.*' => 'required'
         ]);
 
-        $pack = Pack::where('id', $id)->firstOrFail();
+        $pack = Pack::where('uuid', $id)->firstOrFail();
 
-        $pack->name = $validated["name"];
-        $pack->description = $validated["description"];
+        // $pack->name = $validated["name"];
+        // $pack->description = $validated["description"];
 
     	// Remove all PackProduct and add the ones send
         PackProduct::where('pack_id', $id)->delete();
 
         foreach ($validated["products"] as $key => $value) {
     		$pp = new PackProduct();
-    		$pp->pack_id = $pack->id;
+    		$pp->pack_id = $pack->uuid;
     		$pp->product_id = $value;
     		$pp->save();
     	}
 
-    	return $pack->save();
+    	// return $pack->save();
+    	return Pack::where('uuid', $id)->update(['name' => $validated["name"], 'description' => $validated["description"]]);
     }
 
     public function delete($id) {
-    	return Pack::where('id', $id)->firstOrFail()->delete();
+    	// PackProduct::where('pack_id', $id)->delete();
+    	return Pack::where('uuid', $id)->delete();
     }
 
     public function show($id) {
-    	return Pack::where('id', $id)->with(["products"])->firstOrFail();
+    	return Pack::where('uuid', $id)->with(["products"])->firstOrFail();
     }
 }
